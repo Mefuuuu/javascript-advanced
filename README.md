@@ -72,6 +72,29 @@ Giải quyết sự bất đồng bộ của JS
 
 
 # 8. Chaining Promises
+
+Tránh lặp như Callback Hell
+
+```c
+getTodos(1)
+        .then(data => {
+            console.log('>> get data: ', data)
+            return getTodos(2)
+
+        })
+        .then(data2 => {
+            console.log('>>get data2: ', data2)
+            return getTodos(3)
+
+        })
+        .then(data3 => {
+            console.log('>> get data3: ', data3)
+        })
+        .catch(err => {
+            console.log('>>>', err)
+        })
+```
+
 # 9. The Fetch API
 # 10. Async & Await
 # 11. Throwing Errors
