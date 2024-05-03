@@ -110,5 +110,23 @@ Có thể thay cho XMLHttpRequest để gọi API
 ```
 
 # 10. Async & Await
+
+ES7
+
+Async - khai báo một hàm bất đồng bộ
+Await - tạm dừng việc thực hiện các hàm async.
+
+```c
+const getNewToDo = async (id) => {
+        let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        let data = await response.json();
+        return data;
+    }
+
+    getNewToDo(2).then(data => {
+        console.log('>> check get data: ', data)
+    })
+```
+
 # 11. Throwing Errors
 # 12. Destructuring assignment
