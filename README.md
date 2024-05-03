@@ -96,6 +96,19 @@ getTodos(1)
 ```
 
 # 9. The Fetch API
+
+Có thể thay cho XMLHttpRequest để gọi API
+
+```c
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(Response => {
+            return Response.json()
+        })
+        .then(data => {
+            console.log('>>> check fetch data: ', data)
+        })
+```
+
 # 10. Async & Await
 # 11. Throwing Errors
 # 12. Destructuring assignment
