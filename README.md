@@ -133,8 +133,30 @@ const getNewToDo = async (id) => {
 Convert json không ra kết quả lúc đó cần xử lý lỗi
 
 ```c
+const getNewToDo = async (id) => {
+        let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        if (response && response.status !== 200) {
+            throw new Error('Something wrongs with status code: ' + response.status)
+            // reject
+        }
+        let data = await response.json();
+        return data; //resolve
+    }
+```
+
+hoặc dùng Error message
+
+```c
+...
+    getNewToDo('asd12')
+        .then(data => {
+            console.log('>> check get data: ', data)
+        })
+        .catch(err => {
+            console.log('>>> check error: ', err.message)
+        })
 
 ```
 
-
+hoặc dùng Try and Catch
 # 12. Destructuring assignment
