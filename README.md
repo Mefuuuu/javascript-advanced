@@ -129,4 +129,12 @@ const getNewToDo = async (id) => {
 ```
 
 # 11. Throwing Errors
+
+Convert json không ra kết quả lúc đó cần xử lý lỗi
+
+```c
+
+```
+
+
 # 12. Destructuring assignment
