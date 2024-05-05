@@ -2,7 +2,7 @@
 
 ![image](https://github.com/Mefuuuu/javascript-advanced/assets/133778142/f71f431b-9220-4919-951d-012e16e4161b)
 
-# 2. HTTP Requests
+# 2. HTTP Requests ( Tạo Request Với JavaScript Thuần)
 
 ```c
 var xhttp = new XMLHttpRequest();
@@ -16,11 +16,11 @@ xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos/1", true);
 xhttp.send();
 ```
 
-# 3. Status Codes
+# 3. Status Codes (Trạng Thái Của Request)
 
 ![image](https://github.com/Mefuuuu/javascript-advanced/assets/133778142/5cef0b28-c414-4fb8-a498-f03a9f8f4a00)
 
-# 4. Callback functions
+# 4. Callback functions (Khi Cần Thì Gọi Lại)
 
 ```c
 const callback = (error, data) => {
@@ -33,7 +33,7 @@ const callback = (error, data) => {
     }
 ```
 
-# 5. Using JSON data
+# 5. Using JSON data (Đọc File JSON Với Javascript Thuần "Chủng")
 
 Để giao tiếp giữa sever và client
 
@@ -46,7 +46,7 @@ JSON.stringify()     //convert JSON to string
 
 ![b8euo2n7twvgh3dbuatd](https://github.com/Mefuuuu/javascript-advanced/assets/133778142/3a496e8e-6ef2-456f-a35f-62c37ca737f1)
 
-# 7. Promises
+# 7. Promises (Lời Hứa Để Giải Quyết Callback)
 
 Giải quyết sự bất đồng bộ của JS
 ```c
@@ -71,7 +71,7 @@ Giải quyết sự bất đồng bộ của JS
 ```
 
 
-# 8. Chaining Promises
+# 8. Chaining Promises (Promise Lồng Trong Promies)
 
 Tránh lặp như Callback Hell
 
@@ -95,7 +95,7 @@ getTodos(1)
         })
 ```
 
-# 9. The Fetch API
+# 9. The Fetch API (GET Data Từ API Siêu Đơn Giản)
 
 Có thể thay cho XMLHttpRequest để gọi API
 
@@ -109,7 +109,7 @@ Có thể thay cho XMLHttpRequest để gọi API
         })
 ```
 
-# 10. Async & Await
+# 10. Async & Await (Xử Lý Bất Đồng Bộ Sao Dễ Vậy)
 
 ES7
 
@@ -128,7 +128,7 @@ const getNewToDo = async (id) => {
     })
 ```
 
-# 11. Throwing Errors
+# 11. Throwing Errors (Xử Lý Lỗi Với Javascript)
 
 Convert json không ra kết quả lúc đó cần xử lý lỗi
 
@@ -155,8 +155,70 @@ hoặc dùng Error message
         .catch(err => {
             console.log('>>> check error: ', err.message)
         })
-
 ```
 
 hoặc dùng Try and Catch
-# 12. Destructuring assignment
+
+```c
+    const getNewToDo = async (id) => {
+        try {
+            let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+            if (response && response.status !== 200) {
+                throw new Error('Something wrongs with status code: ' + response.status)
+                // reject
+            }
+            let data = await response.json();
+            return data; //resolve
+        } catch (e) {
+            console.log('>>> check catch error', e.message)
+        }
+    }
+
+    getNewToDo('asd12')
+        .then(data => {
+            console.log('>> check get data: ', data)
+        })
+
+```
+
+# 12. Destructuring assignment (Toán Tử 3 Dấu Chấm - Giản Lược Hóa Cùng Destructuring Assignment)
+
+... như là 1 phép tính cộng
+
+```c
+let a, b, rest;
+[a, b] = [10, 20];
+
+console.log(a);
+// Expected output: 10
+
+console.log(b);
+// Expected output: 20
+
+[a, b, ...rest] = [10, 20, 30, 40, 50];
+
+console.log(rest);
+// Expected output: Array [30, 40, 50]
+```
+
+Cách viết biến ngắn gọn:
+
+```c
+    let state = {
+        name: 'Mefu',
+        address: 'hcm',
+        channel: 'vinhky'
+    }
+
+    let { name, address, channel } = state;
+
+    console.log('check key: ', name, address, channel)
+// Expected output: >>> check data arr1:  {name: 'Mefu', address: 'hcm', channel: 'vinhky'}
+```
+
+```c
+    let arr = ['Mefu', 'vinhky1'];
+    let [name, channel] = arr;
+    console.log('>>> check key: ', name, channel)
+// Expected output: >>> check key:  Mefu vinhky1
+```
